@@ -1,0 +1,11 @@
+md-toolbar * {
+  color: white; }
+
+.card-media {
+  background-color: #999999; }
+
+.md-avatar{
+  border-radius: 50%;
+  width: auto;
+  height: 80%;
+}

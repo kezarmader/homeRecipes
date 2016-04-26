@@ -1,0 +1,50 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{recipe.title}}">
+  <ion-content class="padding">
+    <md-card>
+ <img ng-src="{{recipe.imgUrl}}{{recipe.title}}" class="md-card-image" alt="image caption">
+ <md-card-content>
+   <h2>{{recipe.title}}</h2>
+   <md-card-icon-actions layout="row">
+     <span ng-repeat="star in [1,2,3,4,5]">
+          <div ng-switch="recipe.rating >= star">
+              <div ng-switch-when="true">
+                  <md-icon md-font-icon="material-icons" class="md-primary">star</md-icon>
+              </div>
+              <div ng-switch-when="false">
+                  <div ng-switch="recipe.rating > (star-1)">
+                      <div ng-switch-when="true">
+                          <md-icon md-font-icon="material-icons" class="md-primary">star_half</md-icon>
+                      </div>
+                      <div ng-switch-when="false">
+                          <md-icon md-font-icon="material-icons" class="md-primary">star_border</md-icon>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </span>
+   </md-card-icon-actions>
+     <md-list>
+       <md-list-item class="md-line" ng-repeat="item in recipe.ingredents">
+         <img ng-src="{{recipe.imgUrl}}{{item.name}}" class="md-avatar" />
+       <div class="md-list-item-text" layout="column">
+         <p>{{item.name}} {{item.quantity}} {{item.unit}}</p>
+       </div>
+     </md-list-item>
+   </md-list>
+   <md-list>
+     <md-list-item class="md-line" ng-repeat="step in recipe.steps">
+     <div class="md-list-item-text" layout="column">
+       <p>{{step.stepIndex}} - {{step.detail}}</p>
+     </div>
+   </md-list-item>
+ </md-list>
+ </md-card-content>
+</md-card>
+  </ion-content>
+</ion-view>
