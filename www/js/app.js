@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'recipe.services', 'ngMaterial'])
+angular.module('starter', ['ionic', 'ngOpenFB','starter.controllers', 'starter.services', 'recipe.services', 'ngMaterial'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $openFB, appConfig) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +20,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    $openFB.init({appId: appConfig.getFbAppId()});
   });
 })
 
@@ -35,7 +37,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'LoginCtrl'
   })
 
   // Each tab has its own nav history stack:
