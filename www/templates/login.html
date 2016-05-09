@@ -6,11 +6,25 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form>
+    <form ng-hide="user">
         <label class="item">
             <md-button class="md-raised md-primary" ng-click="fbLogin()">Login with Facebook</md-button>
-            <button class="button button-full button-assertive ink" ng-click="fbLogin()">Login with Facebook</button>
         </label>
     </form>
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card ng-show="user">
+        <md-card-title>
+          <md-card-title-media>
+              <div class="md-media-lg card-media" ng-style='"background: url("+user.cover+")"'>
+                <img src='{{user.picture}}'/>
+              </div>
+            </md-card-title-media>
+            <md-card-title-text>
+             <span class="md-headline">{{user.name}}</span>
+             <span class="md-subhead">{{user.city}}</span>
+           </md-card-title-text>
+        </md-card-title>
+      </md-card>
+    </div>
   </ion-content>
 </ion-modal-view>

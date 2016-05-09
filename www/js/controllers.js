@@ -32,7 +32,7 @@ angular.module('starter.controllers', ['recipe.services', 'ngOpenFB'])
         function (response) {
             if (response.status === 'connected') {
                 console.log('Facebook login succeeded');
-                $scope.closeLogin();
+                $scope.getProfileInfo();
             } else {
                 alert('Facebook login failed');
             }
@@ -48,4 +48,32 @@ angular.module('starter.controllers', ['recipe.services', 'ngOpenFB'])
   $scope.login = function() {
     $scope.modal.show();
   };
+
+  $scope.getProfileInfo = function() {
+    $openFB.api({
+          path: '/me',
+          params: {fields: 'id,name'}
+      }).then(
+          function (user) {
+              $scope.user = user;
+          },
+          function (error) {
+              alert('Facebook error: ' + error.error_description);
+          });
+
+          $openFB.api({
+              path: '/me/picture',
+              params: {
+                  redirect: false,
+                  height: 640,
+                  width: 640
+              }
+          }).then(function( res ) {
+              $scope.user.picture= res.data.url;
+              console.log($scope.user);
+          });
+  }
+})
+.controller('ProfileCtrl', function($scope, $openFB){
+
 });
