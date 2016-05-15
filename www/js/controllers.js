@@ -19,7 +19,7 @@ angular.module('starter.controllers', ['recipe.services', 'ngOpenFB'])
     enableFriends: true
   };
 })
-.controller('LoginCtrl', function($scope, $ionicModal, $openFB){
+.controller('LoginCtrl', function($scope, $ionicModal, $openFB, $rootScope){
   // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
       scope: $scope
@@ -50,27 +50,26 @@ angular.module('starter.controllers', ['recipe.services', 'ngOpenFB'])
   };
 
   $scope.getProfileInfo = function() {
-    $openFB.api({
+      var profilePromise = $openFB.api({
           path: '/me',
           params: {fields: 'id,name'}
       }).then(
           function (user) {
-              $scope.user = user;
+              $rootScope.user = user;
+
+              $openFB.api({
+                  path: '/me/picture',
+                  params: {
+                      redirect: false,
+                      height: 640,
+                      width: 640
+                  }
+              }).then(function( res ) {
+                  $rootScope.user.picture= res.data.url;
+              });
           },
           function (error) {
               alert('Facebook error: ' + error.error_description);
-          });
-
-          $openFB.api({
-              path: '/me/picture',
-              params: {
-                  redirect: false,
-                  height: 640,
-                  width: 640
-              }
-          }).then(function( res ) {
-              $scope.user.picture= res.data.url;
-              console.log($scope.user);
           });
   }
 })

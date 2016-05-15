@@ -10,7 +10,7 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-recipes"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Profile" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" ng-click="login()">
+  <ion-tab title="Profile" icon-off="{{user?'ion-ios-person':'ion-ios-person-outline'}}" icon-on="ion-ios-person" ng-click="login()">
     <!--<ion-nav-view name="tab-recipes"></ion-nav-view>-->
   </ion-tab>
 

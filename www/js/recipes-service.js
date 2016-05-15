@@ -1,5 +1,5 @@
 angular.module('recipe.services', [])
-.factory('recipeServices', function() {
+.factory('recipeServices', function($http) {
 
      var recipes = [
        {
@@ -115,6 +115,11 @@ angular.module('recipe.services', [])
    };
 
    function all(){
+     $http.get('https://api.mlab.com/api/1/databases/home_recipes/collections/recipes?apiKey=xlKkXtSD0seav4tWRbKMaPII7gKndHpT').then(
+       function(response){
+         recipes = response.data;
+       }
+     )
      return recipes;
    }
 

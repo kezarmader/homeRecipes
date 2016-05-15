@@ -4,7 +4,7 @@
       <md-card flex="45" ng-repeat="recipe in recipes">
         <md-card-title>
           <md-card-title-text>{{recipe.title}}</md-card-title-text>
-          <md-icon md-font-icon="material-icons" ng-click='toggleFavorite()' class="md-primary">favorite{{recipe.isFavorite?'':'_border'}}</md-icon>
+          <md-icon ng-show="user" md-font-icon="material-icons" ng-click='toggleFavorite()' class="md-primary">favorite{{recipe.isFavorite?'':'_border'}}</md-icon>
         </md-card-title>
          <img ng-click='navigate(recipe.id)' ng-src="{{recipe.imgUrl}}{{recipe.title}}" class="md-card-image" alt="image caption">
          <md-card-footer>

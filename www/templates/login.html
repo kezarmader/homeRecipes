@@ -13,7 +13,7 @@
     </form>
     <div flex-xs flex-gt-xs="50" layout="column">
       <md-card ng-show="user">
-        <md-card-title>
+        <md-card-title >
           <md-card-title-media>
               <div class="md-media-lg card-media" ng-style='"background: url("+user.cover+")"'>
                 <img src='{{user.picture}}'/>
@@ -24,6 +24,9 @@
              <span class="md-subhead">{{user.city}}</span>
            </md-card-title-text>
         </md-card-title>
+        <md-card-action>
+
+        </md-card-action>
       </md-card>
     </div>
   </ion-content>
